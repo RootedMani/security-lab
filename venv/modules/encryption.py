@@ -47,3 +47,4 @@ def rsa_ed(message: str):
 
 if __name__ == "__main__":
     print(aes_ed("Hello, My name is Mani!"))
+    print(rsa_ed("Hello, My name is Mani!"))
