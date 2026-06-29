@@ -19,12 +19,22 @@ def hash_file(file_path):
             h.update(chunk) # Add the chunk to hash calculation
     return h.hexdigest() # return hash in hexodecimal format
 
-def verify_integrity(file1 , file2):
+def verify_integrity(file1: str , file2: str):
+    """ Checks if two files are identical by checking their hash equivalent 
+    Args:
+        file1 (str): Relative path to the first file
+        file2 (str): Relative path to the second file 
+    Returns: 
+        str: A message indicating whether the two files given are identical
+        or have been modified.
+    Note:
+        Print a message before returning the result.
+    """
     hash1 = hash_file(file1)
     hash2 = hash_file(file2)
     print(f"Checking integrity between {file1} and {file2}")
     if hash1 == hash2:
-        return "The 2 files on intact. No modification has been made."
+        return "The 2 files are intact. No modification has been made."
     # Else
     return "The two files are modified. Possibly unsafe."
 
