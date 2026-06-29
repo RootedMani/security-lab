@@ -13,5 +13,5 @@ def aes_ed(message):
 
     return f"key: {key.hex()}\ncipher text: {cipher_text.hex()}\nplain text: {plain_text.decode()}"
 
-message = input("Enter your message: ")
-print(aes_ed(message))
+if __name__ == "__main__":
+    print(aes_ed("Hello, My name is Mani!"))
