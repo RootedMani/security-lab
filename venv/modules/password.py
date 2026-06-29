@@ -41,8 +41,22 @@ def hash_pw(password):
         The hashed equivelant of the password
     """
     salt = bcrypt.gensalt()
-    hashed_password = bcrypt.hashpw(password.encrypt(), salt)
+    hashed_password = bcrypt.hashpw(password.encode(), salt)
     return hashed_password
+
+def verify_password(password_attempt, hashed_password):
+    """Check if the attempted password is identical to the real password 
+    which is given to the function hashed.
+    Args:
+        password_attempt (str): The password the user entered to try to get the access.
+        hashed_password (str): The real password in the hash format which will be compared to the attempted password.
+    Returns: 
+        Tells the user if the password is identical and they can have access or not."""
+    if bcrypt.checkpw(password_attempt.encode(), hashed_password):
+        return "Password is correct. Access granted."
+    else:
+        return "Incorrect password. Access denied."
+
 
 if __name__ == "__main__":
     while True:
@@ -51,3 +65,6 @@ if __name__ == "__main__":
             print("Please choose a strong password. Try again.")
         else:
             break
+    hashed_password = hash_pw(password1)
+    verification_attempt = getpass("Re-enter your password to verify.")
+    print(verify_password(verification_attempt, hashed_password))
